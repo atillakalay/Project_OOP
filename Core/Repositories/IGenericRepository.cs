@@ -7,7 +7,7 @@ namespace Project_OOP.Core.Repositories
         IQueryable<T> GetAll(Expression<Func<T, bool>> expression);
         Task<T> GetById(int id);
         IQueryable<T> Where(Expression<Func<T, bool>> expression);
-        IQueryable<bool> Any(Expression<Func<T, bool>> expression);
+        bool Any(Expression<Func<T, bool>> expression);
         Task AddAsync(T entity);
         Task AddRangeAsync(IEnumerable<T> entities);
         void Update(T entity);
