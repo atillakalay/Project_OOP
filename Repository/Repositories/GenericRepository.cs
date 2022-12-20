@@ -15,12 +15,12 @@ namespace Project_OOP.Repository.Repositories
             _dbSet = _appDbContext.Set<T>();
         }
 
-        public IQueryable<T> GetAll(Expression<Func<T, bool>> expression)
+        public IQueryable<T> GetAll()
         {
             return _dbSet.AsNoTracking().AsQueryable();
         }
 
-        public async Task<T> GetById(int id)
+        public async Task<T> GetByIdAsync(int id)
         {
             return await _dbSet.FindAsync(id);
         }
@@ -30,9 +30,9 @@ namespace Project_OOP.Repository.Repositories
             return _dbSet.Where(expression);
         }
 
-        public bool Any(Expression<Func<T, bool>> expression)
+        public async Task<bool> AnyAsync(Expression<Func<T, bool>> expression)
         {
-            return _dbSet.Any(expression);
+            return await _dbSet.AnyAsync(expression);
         }
 
         public async Task AddAsync(T entity)
