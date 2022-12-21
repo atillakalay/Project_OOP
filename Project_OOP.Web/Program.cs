@@ -1,9 +1,12 @@
 using Microsoft.EntityFrameworkCore;
 using Project_OOP.Core.Repositories;
+using Project_OOP.Core.Services;
 using Project_OOP.Core.UnitOfWorks;
 using Project_OOP.Repository;
 using Project_OOP.Repository.Repositories;
 using Project_OOP.Repository.UnitOfWork;
+using Project_OOP.Service.Mapping;
+using Project_OOP.Service.Services;
 using System.Reflection;
 
 var builder = WebApplication.CreateBuilder(args);
@@ -13,7 +16,8 @@ builder.Services.AddControllersWithViews();
 
 builder.Services.AddScoped<IUnitOfWork, UnitOfWork>();
 builder.Services.AddScoped(typeof(IGenericRepository<>), typeof(GenericRepository<>));
-//builder.Services.AddScoped(typeof(IService<>), typeof(Service<>));
+builder.Services.AddScoped(typeof(IService<>), typeof(Service<>));
+builder.Services.AddAutoMapper(typeof(MapProfile));
 
 builder.Services.AddDbContext<AppDbContext>(x =>
 {
